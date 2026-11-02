@@ -30,8 +30,10 @@
       { title: 'Profit & Loss Statement (P)', category: 'Report', action: () => frappe.set_route('query-report', 'Profit and Loss Statement') },
       { title: 'Balance Sheet (B)', category: 'Report', action: () => frappe.set_route('query-report', 'Balance Sheet') },
       { title: 'Cash Flow Statement', category: 'Report', action: () => frappe.set_route('query-report', 'Cash Flow') },
-      { title: 'Stock Summary (S)', category: 'Report', action: () => frappe.set_route('query-report', 'Stock Summary') },
+      { title: 'Stock Summary (S)', category: 'Report', action: () => frappe.set_route('query-report', 'Stock Balance') },
       { title: 'Financial Ratio Analysis (R)', category: 'Report', action: () => frappe.set_route('query-report', 'Financial Ratios') },
+      { title: 'Financial Reports Directory (D)', category: 'Report', action: () => frappe.set_route('workspaces', 'Financial Reports') },
+      { title: 'Executive Financial Dashboard (O)', category: 'Report', action: () => frappe.set_route('dashboard-view', 'Accounting') },
       { title: 'Accounts Receivable Ageing', category: 'Report', action: () => frappe.set_route('query-report', 'Accounts Receivable') },
       { title: 'Accounts Payable Ageing', category: 'Report', action: () => frappe.set_route('query-report', 'Accounts Payable') },
       { title: 'General Ledger Drill-Down', category: 'Report', action: () => frappe.set_route('query-report', 'General Ledger') },
@@ -41,10 +43,13 @@
       { title: 'Purchase Register', category: 'Tax', action: () => frappe.set_route('query-report', 'GST Purchase Register') },
 
       // Masters & Hubs
+      { title: 'Accounting Workspace (A)', category: 'Master', action: () => frappe.set_route('workspaces', 'Accounting') },
       { title: 'Chart of Accounts (H)', category: 'Master', action: () => frappe.set_route('Tree', 'Account') },
+      { title: 'Banking Hub & BRS (N)', category: 'Master', action: () => frappe.set_route('workspaces', 'Payments') },
       { title: 'Customer List', category: 'Master', action: () => frappe.set_route('List', 'Customer') },
       { title: 'Supplier List', category: 'Master', action: () => frappe.set_route('List', 'Supplier') },
       { title: 'Item List / Inventory', category: 'Master', action: () => frappe.set_route('List', 'Item') },
+      { title: 'Accountant Desk / To-Dos (T)', category: 'Master', action: () => frappe.set_route('List', 'ToDo') },
       { title: 'Company Masters', category: 'Master', action: () => frappe.set_route('List', 'Company') }
     ],
 

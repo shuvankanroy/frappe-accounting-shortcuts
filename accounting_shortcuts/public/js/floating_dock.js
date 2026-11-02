@@ -265,14 +265,16 @@
         'k-daybook': () => d && d.openDayBook(),
         'b-bs': () => frappe.set_route('query-report', 'Balance Sheet'),
         'p-pl': () => frappe.set_route('query-report', 'Profit and Loss Statement'),
-        's-stock': () => frappe.set_route('query-report', 'Stock Summary'),
+        's-stock': () => frappe.set_route('query-report', 'Stock Balance'),
         'h-coa': () => frappe.set_route('Tree', 'Account'),
-        'n-bank': () => frappe.set_route('accounting-banking'),
+        'n-bank': () => frappe.set_route('workspaces', 'Payments'),
         'r-ratio': () => frappe.set_route('query-report', 'Financial Ratios'),
-        'd-reports': () => frappe.set_route('accounting-reports'),
-        'o-dashboard': () => frappe.set_route('accounting-dashboard'),
+        'd-reports': () => frappe.set_route('workspaces', 'Financial Reports'),
+        'o-dashboard': () => frappe.set_route('dashboard-view', 'Accounting'),
         't-todo': () => frappe.set_route('List', 'ToDo'),
-        'alter-accounts': () => frappe.set_route('desk', 'accounting'),
+        'alter-accounts': () => frappe.set_route('workspaces', 'Accounting'),
+        'alt-w': () => d && d.addNoteToRecord && d.addNoteToRecord(),
+        'ctrl-alt-s': () => d && d.syncNow && d.syncNow(),
         'f2-date': () => d && d.triggerDateChange(),
         'alt-f2-period': () => d && d.triggerPeriodChange(),
         'f3-company': () => d && d.switchCompanyDialog(),
@@ -289,7 +291,5 @@
   };
 
   window.AccountingFloatingDock = FloatingDock;
-  $(document).on('app_ready', function () {
-    FloatingDock.init();
-  });
+  FloatingDock.init();
 })();

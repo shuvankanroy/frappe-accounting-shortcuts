@@ -148,16 +148,22 @@
       if (res !== null && this.targetInput) {
         const strVal = res.toString();
         this.targetInput.value = strVal;
-        $(this.targetInput).trigger('change');
+        $(this.targetInput).trigger('input').trigger('change').trigger('blur');
 
-        if (window.cur_frm && this.targetInput.getAttribute('data-fieldname')) {
-          const fieldname = this.targetInput.getAttribute('data-fieldname');
+        const fieldname = this.targetInput.getAttribute('data-fieldname') || $(this.targetInput).closest('[data-fieldname]').attr('data-fieldname');
+        if (window.cur_frm && fieldname) {
           const $gridRow = $(this.targetInput).closest('.grid-row');
           if ($gridRow.length) {
-            const rowIdx = parseInt($gridRow.attr('data-idx')) - 1;
-            const grid = cur_frm.get_field('items') ? cur_frm.get_field('items').grid : null;
-            if (grid && grid.grid_rows[rowIdx]) {
-              frappe.model.set_value(grid.grid_rows[rowIdx].doc.doctype, grid.grid_rows[rowIdx].doc.name, fieldname, res);
+            const grid_row = $gridRow.data('grid_row');
+            if (grid_row && grid_row.doc) {
+              frappe.model.set_value(grid_row.doc.doctype, grid_row.doc.name, fieldname, res);
+            } else {
+              const rowIdx = parseInt($gridRow.attr('data-idx')) - 1;
+              const tableFieldname = $gridRow.closest('.frappe-control[data-fieldtype="Table"]').attr('data-fieldname') || 'items';
+              const grid = cur_frm.get_field(tableFieldname) ? cur_frm.get_field(tableFieldname).grid : null;
+              if (grid && grid.grid_rows[rowIdx]) {
+                frappe.model.set_value(grid.grid_rows[rowIdx].doc.doctype, grid.grid_rows[rowIdx].doc.name, fieldname, res);
+              }
             }
           } else {
             cur_frm.set_value(fieldname, res);
