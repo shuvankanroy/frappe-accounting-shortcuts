@@ -1,0 +1,224 @@
+/**
+ * Tally Shortcuts Stylesheet for Frappe Desk & ERPNext
+ * Emerald & Slate Palette with high legibility and sharp contrast.
+ */
+
+/* 1. Floating Action Dock */
+#adt-shortcut-dock {
+  position: fixed;
+  bottom: 6px;
+  right: 16px;
+  z-index: 9997;
+  background: #064E3B;
+  color: #FFFFFF;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  opacity: 0.96;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+#adt-shortcut-dock:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.adt-dock-pill {
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+  white-space: nowrap;
+}
+
+.adt-dock-pill:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.adt-dock-pill kbd {
+  background: #047857;
+  color: #FFFFFF;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 700;
+  margin-right: 4px;
+  font-size: 10px;
+}
+
+/* 2. Expandable Floating Shortcut Details Drawer */
+#adt-shortcut-details-drawer {
+  position: fixed;
+  bottom: 44px;
+  right: 16px;
+  width: 780px;
+  max-width: 95vw;
+  max-height: 80vh;
+  background: #FFFFFF;
+  border: 1.5px solid #065F46;
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  z-index: 9998;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  display: none;
+  overflow: hidden;
+  animation: adt-slide-up 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes adt-slide-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.adt-sc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.adt-sc-row {
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #0F291E;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  transition: background 0.12s ease;
+}
+
+.adt-sc-row:hover {
+  background: #EAF7EE;
+  color: #065F46;
+}
+
+.adt-sc-row kbd {
+  background: #065F46;
+  color: #FFFFFF;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 10px;
+  min-width: 52px;
+  text-align: center;
+  display: inline-block;
+}
+
+/* 3. Integrated Accountant Calculator */
+#adt-calculator-panel {
+  position: fixed;
+  bottom: 44px;
+  right: 24px;
+  width: 290px;
+  background: #FFFFFF;
+  border: 1.5px solid #065F46;
+  border-radius: 8px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, monospace;
+  display: none;
+  overflow: hidden;
+}
+
+.adt-calc-header {
+  background: #065F46;
+  color: #FFFFFF;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.adt-calc-screen {
+  background: #F4FBF7;
+  padding: 10px 12px;
+  border-bottom: 1px solid #D1E7DD;
+  text-align: right;
+}
+
+.adt-calc-expr {
+  font-size: 12px;
+  color: #64748B;
+  min-height: 16px;
+  word-break: break-all;
+}
+
+.adt-calc-result {
+  font-size: 22px;
+  font-weight: 700;
+  color: #065F46;
+  margin-top: 2px;
+}
+
+.adt-calc-input {
+  width: 100%;
+  border: 1.5px solid #CBD5E1;
+  padding: 6px 10px;
+  font-size: 14px;
+  font-family: monospace;
+  text-align: right;
+  outline: none;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.adt-calc-input:focus {
+  border-color: #065F46;
+}
+
+.adt-calc-pad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  padding: 8px;
+  background: #F8FAFC;
+}
+
+.adt-calc-btn {
+  padding: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  color: #0F291E;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  user-select: none;
+  transition: all 0.12s ease;
+}
+
+.adt-calc-btn:hover {
+  background: #EAF7EE;
+  border-color: #065F46;
+}
+
+.adt-calc-btn.op {
+  background: #E8F5E9;
+  color: #065F46;
+}
+
+.adt-calc-btn.eq {
+  background: #065F46;
+  color: #FFFFFF;
+  grid-column: span 2;
+}
+
+.adt-calc-btn.eq:hover {
+  background: #047857;
+}
+
+/* 4. Go To Search Active Highlight */
+.adt-goto-item:hover, .adt-goto-item.active {
+  background: #EAF7EE !important;
+  border-left-color: #065F46 !important;
+}
