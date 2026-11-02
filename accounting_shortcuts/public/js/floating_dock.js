@@ -45,7 +45,7 @@
             <span style="opacity: 0.4;">|</span>
             <span class="adt-dock-pill" data-act="ctrl-a" style="padding: 1px 4px; border-radius: 3px;"><strong>Ctrl+A</strong> Save</span>
             <span style="opacity: 0.4;">|</span>
-            <span class="adt-dock-pill" data-act="calc" style="padding: 1px 4px; border-radius: 3px;"><strong>Ctrl+N</strong> Calc</span>
+            <span class="adt-dock-pill" data-act="calc" style="padding: 1px 4px; border-radius: 3px;"><strong>Alt+N</strong> Calc</span>
           `;
 
           dock.querySelectorAll('.adt-dock-pill').forEach(pill => {
@@ -129,7 +129,7 @@
               name: 'Ctrl + Key Combinations',
               items: [
                 ['Ctrl+A', 'Universal Accept & Save (Vouchers, Forms & Dialogs)', 'ctrl-a'],
-                ['Ctrl+N', 'Accountant Formula Calculator Panel (or Alt+C)', 'calc'],
+                ['Alt+N / Ctrl+N', 'Accountant Formula Calculator Panel (or Alt+C in amounts)', 'calc'],
                 ['Ctrl+G', 'Switch To / Universal Go To Palette', 'alt-g'],
                 ['Ctrl+Enter', 'Alter Master under cursor in link fields; Submit voucher', 'ctrl-enter'],
                 ['Ctrl+D', 'Remove line item row in grid table', 'ctrl-d'],

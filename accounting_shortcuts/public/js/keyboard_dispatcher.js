@@ -119,8 +119,8 @@
         }
       }
 
-      // 3. Calculator (Ctrl+N or Alt+C in Amount Fields)
-      if (isCtrlOrCmd && !e.altKey && !e.shiftKey && (keyLower === 'n' || code === 'KeyN')) {
+      // 3. Calculator (Alt+N, Ctrl+N, or Alt+C in Amount Fields)
+      if (((isCtrlOrCmd && !e.altKey) || (e.altKey && !isCtrlOrCmd)) && !e.shiftKey && (keyLower === 'n' || code === 'KeyN')) {
         e.preventDefault();
         e.stopPropagation();
         if (window.AccountingCalculator) {
