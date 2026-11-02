@@ -1,12 +1,12 @@
 /**
- * Tally Shortcuts: Global Zero-Mouse Keyboard Dispatcher
- * 100% KhataOS & TallyPrime Parity for Frappe Framework & ERPNext
+ * Accounting Shortcuts: Global Zero-Mouse Keyboard Dispatcher
+ * Keyboard-first accounting navigation for Frappe Framework & ERPNext
  */
 
 (function () {
   'use strict';
 
-  if (window.TallyKeyboardDispatcher) {
+  if (window.AccountingKeyboardDispatcher) {
     return;
   }
 
@@ -26,7 +26,7 @@
     },
 
     init: function () {
-      console.log('[TallyShortcuts] Initializing Tally & KhataOS Keyboard Dispatcher...');
+      console.log('[AccountingShortcuts] Initializing Keyboard Dispatcher...');
       window.addEventListener('keydown', this.handleKeyDown.bind(this), true);
     },
 
@@ -72,8 +72,8 @@
       if (e.ctrlKey && !e.altKey && !e.shiftKey && (e.key === 'n' || e.key === 'N')) {
         e.preventDefault();
         e.stopPropagation();
-        if (window.TallyCalculator) {
-          window.TallyCalculator.toggle(activeEl);
+        if (window.AccountingCalculator) {
+          window.AccountingCalculator.toggle(activeEl);
         }
         return;
       }
@@ -82,8 +82,8 @@
       if (e.altKey && !e.ctrlKey && (e.key === 'g' || e.key === 'G')) {
         e.preventDefault();
         e.stopPropagation();
-        if (window.TallyGoTo) {
-          window.TallyGoTo.open();
+        if (window.AccountingGoTo) {
+          window.AccountingGoTo.open();
         }
         return;
       }
@@ -91,8 +91,8 @@
       if (e.ctrlKey && !e.altKey && !e.shiftKey && (e.key === 'g' || e.key === 'G')) {
         e.preventDefault();
         e.stopPropagation();
-        if (window.TallyGoTo) {
-          window.TallyGoTo.open();
+        if (window.AccountingGoTo) {
+          window.AccountingGoTo.open();
         }
         return;
       }
@@ -108,8 +108,8 @@
       if (e.altKey && !e.ctrlKey && !e.shiftKey && (e.key === 'c' || e.key === 'C')) {
         e.preventDefault();
         e.stopPropagation();
-        if (isNumericField && window.TallyCalculator) {
-          window.TallyCalculator.toggle(activeEl);
+        if (isNumericField && window.AccountingCalculator) {
+          window.AccountingCalculator.toggle(activeEl);
         } else if (window.AccountingVoucherRunner) {
           window.AccountingVoucherRunner.openQuickMasterDrawer(activeEl);
         }
@@ -136,7 +136,7 @@
         if (e.key === 'F1') {
           e.preventDefault();
           e.stopPropagation();
-          if (window.TallyFloatingDock) window.TallyFloatingDock.showShortcutsGuide();
+          if (window.AccountingFloatingDock) window.AccountingFloatingDock.showShortcutsGuide();
           return;
         }
         if (e.key === 'F2') {
@@ -190,7 +190,7 @@
         if (e.key === 'F10') {
           e.preventDefault();
           e.stopPropagation();
-          if (window.TallyGoTo) window.TallyGoTo.open();
+          if (window.AccountingGoTo) window.AccountingGoTo.open();
           return;
         }
         if (e.key === 'F11') {
@@ -334,10 +334,10 @@
     },
 
     handleEscape: function (e) {
-      if (window.TallyCalculator && window.TallyCalculator.isOpen) {
+      if (window.AccountingCalculator && window.AccountingCalculator.isOpen) {
         e.preventDefault();
         e.stopPropagation();
-        window.TallyCalculator.close();
+        window.AccountingCalculator.close();
         return true;
       }
 
@@ -346,14 +346,6 @@
         e.preventDefault();
         e.stopPropagation();
         gotoModal.style.display = 'none';
-        return true;
-      }
-
-      const detailsDrawer = document.getElementById('adt-shortcut-details-drawer');
-      if (detailsDrawer && detailsDrawer.style.display === 'block') {
-        e.preventDefault();
-        e.stopPropagation();
-        detailsDrawer.style.display = 'none';
         return true;
       }
 
@@ -557,7 +549,7 @@
     }
   };
 
-  window.TallyKeyboardDispatcher = Dispatcher;
+  window.AccountingKeyboardDispatcher = Dispatcher;
   $(document).on('app_ready', function () {
     Dispatcher.init();
   });

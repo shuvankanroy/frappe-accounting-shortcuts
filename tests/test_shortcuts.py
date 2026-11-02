@@ -1,10 +1,10 @@
 import unittest
 import os
 
-class TestTallyShortcutsPackage(unittest.TestCase):
+class TestAccountingShortcutsPackage(unittest.TestCase):
     def setUp(self):
         self.base_dir = os.path.dirname(os.path.dirname(__file__))
-        self.app_dir = os.path.join(self.base_dir, "tally_shortcuts")
+        self.app_dir = os.path.join(self.base_dir, "accounting_shortcuts")
         self.js_dir = os.path.join(self.app_dir, "public", "js")
         self.css_dir = os.path.join(self.app_dir, "public", "css")
 
@@ -21,11 +21,11 @@ class TestTallyShortcutsPackage(unittest.TestCase):
         hooks_file = os.path.join(self.app_dir, "hooks.py")
         with open(hooks_file, "r", encoding="utf-8") as f:
             content = f.read()
-        self.assertIn("/assets/tally_shortcuts/css/tally_shortcuts.css", content)
-        self.assertIn("/assets/tally_shortcuts/js/calculator.js", content)
-        self.assertIn("/assets/tally_shortcuts/js/goto_search.js", content)
-        self.assertIn("/assets/tally_shortcuts/js/keyboard_dispatcher.js", content)
-        self.assertIn("/assets/tally_shortcuts/js/floating_dock.js", content)
+        self.assertIn("/assets/accounting_shortcuts/css/accounting_shortcuts.css", content)
+        self.assertIn("/assets/accounting_shortcuts/js/calculator.js", content)
+        self.assertIn("/assets/accounting_shortcuts/js/goto_search.js", content)
+        self.assertIn("/assets/accounting_shortcuts/js/keyboard_dispatcher.js", content)
+        self.assertIn("/assets/accounting_shortcuts/js/floating_dock.js", content)
 
     def test_js_assets_exist(self):
         """Verify public JavaScript assets exist."""
@@ -35,8 +35,8 @@ class TestTallyShortcutsPackage(unittest.TestCase):
 
     def test_css_assets_exist(self):
         """Verify public CSS asset exists."""
-        p = os.path.join(self.css_dir, "tally_shortcuts.css")
-        self.assertTrue(os.path.exists(p), "Missing tally_shortcuts.css")
+        p = os.path.join(self.css_dir, "accounting_shortcuts.css")
+        self.assertTrue(os.path.exists(p), "Missing accounting_shortcuts.css")
 
 if __name__ == "__main__":
     unittest.main()

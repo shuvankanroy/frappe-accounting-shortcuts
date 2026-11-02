@@ -3,11 +3,11 @@ requires = ["flit_core >=3.4,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "tally_shortcuts"
+name = "accounting_shortcuts"
 authors = [
     { name = "Shuvankan Roy", email = "shuvankanroy@users.noreply.github.com" }
 ]
-description = "TallyPrime & KhataOS Keyboard Shortcuts, Universal Go To (Alt+G), Floating Calculator, and Action Dock for ERPNext & Frappe Framework"
+description = "Professional Keyboard-First Accounting Navigation, Universal Go To (Alt+G), Floating Calculator, and Action Dock for ERPNext & Frappe Framework"
 readme = "README.md"
 requires-python = ">=3.10"
 dynamic = ["version"]
@@ -21,5 +21,5 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/shuvankanroy/frappe-tally-shortcuts"
-Repository = "https://github.com/shuvankanroy/frappe-tally-shortcuts.git"
+Homepage = "https://github.com/shuvankanroy/frappe-accounting-shortcuts"
+Repository = "https://github.com/shuvankanroy/frappe-accounting-shortcuts.git"

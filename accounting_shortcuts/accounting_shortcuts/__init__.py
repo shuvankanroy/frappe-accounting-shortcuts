@@ -1,0 +1,1 @@
+# Accounting Shortcuts internal package

@@ -1,5 +1,5 @@
 /**
- * Tally Shortcuts: Integrated Accountant Calculator
+ * Accounting Shortcuts: Integrated Accountant Calculator
  * Ctrl+N / Alt+C in Amount Fields: Interactive formula arithmetic with 1-key field injection.
  */
 
@@ -171,6 +171,5 @@
     }
   };
 
-  window.TallyCalculator = Calculator;
-  window.AccountingCalculator = Calculator; // Compatibility alias
+  window.AccountingCalculator = Calculator;
 })();

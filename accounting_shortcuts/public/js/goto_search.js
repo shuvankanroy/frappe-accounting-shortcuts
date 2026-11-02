@@ -1,5 +1,5 @@
 /**
- * Tally Shortcuts: Universal Go To Search Palette (Alt+G)
+ * Accounting Shortcuts: Universal Go To Search Palette (Alt+G)
  * Instant fuzzy launcher for all vouchers, reports, registers, and masters.
  */
 
@@ -36,13 +36,9 @@
       { title: 'Accounts Payable Ageing', category: 'Report', action: () => frappe.set_route('query-report', 'Accounts Payable') },
       { title: 'General Ledger Drill-Down', category: 'Report', action: () => frappe.set_route('query-report', 'General Ledger') },
 
-      // GST & Compliance
-      { title: 'GST Sales Register', category: 'GST', action: () => frappe.set_route('query-report', 'GST Sales Register') },
-      { title: 'GST Purchase Register', category: 'GST', action: () => frappe.set_route('query-report', 'GST Purchase Register') },
-      { title: 'GSTR-3B Details', category: 'GST', action: () => frappe.set_route('query-report', 'GSTR-3B Details') },
-      { title: 'GSTIN Status & Verification', category: 'GST', action: () => frappe.set_route('query-report', 'GSTIN Status') },
-      { title: 'e-Way Bill Logs', category: 'GST', action: () => frappe.set_route('List', 'e-Waybill Log') },
-      { title: 'e-Invoice Logs', category: 'GST', action: () => frappe.set_route('List', 'e-Invoice Log') },
+      // Compliance
+      { title: 'Sales Register', category: 'Tax', action: () => frappe.set_route('query-report', 'GST Sales Register') },
+      { title: 'Purchase Register', category: 'Tax', action: () => frappe.set_route('query-report', 'GST Purchase Register') },
 
       // Masters & Hubs
       { title: 'Chart of Accounts (H)', category: 'Master', action: () => frappe.set_route('Tree', 'Account') },
@@ -85,7 +81,7 @@
             <div id="adt-goto-results" style="max-height: 380px; overflow-y: auto; padding: 6px 0;"></div>
             <div style="background: #F8FAFC; padding: 8px 16px; font-size: 11px; color: #64748B; border-top: 1px solid #E2E8F0; display: flex; justify-content: space-between;">
               <span>↑/↓ Navigate &bull; Enter to Open &bull; Esc to Close</span>
-              <span><strong>KhataOS & TallyPrime Parity</strong></span>
+              <span><strong>Fast Accounting Keyboard Architecture</strong></span>
             </div>
           </div>
         `;
@@ -188,6 +184,5 @@
     }
   };
 
-  window.TallyGoTo = GoToSearch;
-  window.AccountingGoTo = GoToSearch; // Compatibility alias
+  window.AccountingGoTo = GoToSearch;
 })();

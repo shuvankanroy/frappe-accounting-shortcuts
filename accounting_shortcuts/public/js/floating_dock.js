@@ -1,5 +1,5 @@
 /**
- * Tally Shortcuts: Interactive Pop-Out Shortcuts Guide & Sleek Compact Floating Dock
+ * Accounting Shortcuts: Interactive Pop-Out Shortcuts Guide & Sleek Compact Floating Dock
  * Always-visible floating dock with 1-click execution and comprehensive single & multi-key pop-out modal.
  */
 
@@ -157,7 +157,7 @@
                 ['Alt+A', 'Statutory GST Tax Analysis Drawer (HSN, CGST, SGST, IGST)', 'alt-a'],
                 ['Alt+R', 'Repeat Narration from last voucher for party', 'repeat-narration'],
                 ['Alt+K', 'Company Menu / Switch Company (same as F3)', 'f3-company'],
-                ['Alt+O', 'Data Import Menu (Tally XML / Excel / CSV)', 'import-menu'],
+                ['Alt+O', 'Data Import Menu (XML / Excel / CSV)', 'import-menu'],
                 ['Alt+E', 'Export Menu (PDF, Excel, JSON)', 'export-menu'],
                 ['Alt+P', 'Print Menu / Tax Invoice Print', 'print']
               ]
@@ -214,7 +214,7 @@
       `;
 
       const d = new frappe.ui.Dialog({
-        title: __('⚡ Tally & KhataOS Shortcuts — Single & Multi-Key Guide'),
+        title: __('⚡ Fast Accounting Shortcuts — Single & Multi-Key Guide'),
         size: 'extra-large',
         fields: [{ fieldtype: 'HTML', fieldname: 'shortcuts_html' }]
       });
@@ -234,7 +234,7 @@
     },
 
     executeAction: function (act) {
-      const d = window.TallyKeyboardDispatcher;
+      const d = window.AccountingKeyboardDispatcher;
       const actions = {
         'f8': () => frappe.new_doc('Sales Invoice'),
         'f9': () => frappe.new_doc('Purchase Invoice'),
@@ -251,10 +251,10 @@
         'ctrl-f9': () => frappe.new_doc('Purchase Order'),
         'ctrl-f7': () => frappe.new_doc('Stock Reconciliation'),
         'ctrl-f4': () => frappe.new_doc('Payroll Entry'),
-        'f10': () => window.TallyGoTo && window.TallyGoTo.open(),
+        'f10': () => window.AccountingGoTo && window.AccountingGoTo.open(),
         'ctrl-a': () => d && d.triggerAccept(),
-        'alt-g': () => window.TallyGoTo && window.TallyGoTo.open(),
-        'calc': () => window.TallyCalculator && window.TallyCalculator.toggle(),
+        'alt-g': () => window.AccountingGoTo && window.AccountingGoTo.open(),
+        'calc': () => window.AccountingCalculator && window.AccountingCalculator.toggle(),
         'alt-c': () => window.AccountingVoucherRunner && window.AccountingVoucherRunner.openQuickMasterDrawer(),
         'ctrl-enter': () => d && d.triggerDocSubmit(),
         'alt-f': () => d && d.openLedgerFinder(),
@@ -288,7 +288,7 @@
     }
   };
 
-  window.TallyFloatingDock = FloatingDock;
+  window.AccountingFloatingDock = FloatingDock;
   $(document).on('app_ready', function () {
     FloatingDock.init();
   });
