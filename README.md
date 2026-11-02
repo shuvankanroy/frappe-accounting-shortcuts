@@ -121,6 +121,30 @@ Empower accountants with high-speed voucher entry, a universal **Go To (<kbd>Alt
 
 ---
 
+## 🖥️ Desktop Standalone Mode & Browser Guides
+
+Accounting Shortcuts supports Progressive Web App (PWA) installation and dedicated window mode for zero-distraction bookkeeping.
+
+### 🌐 Chrome / Edge / Brave (1-Click Install)
+1. Navigate to `/desk` in your browser.
+2. Click the **"🖥️ Install Desktop App"** button in the navbar, or click the **Install icon** in the browser address bar.
+3. Accounting Shortcuts launches in an isolated native desktop window with full **Keyboard Lock** (<kbd>Ctrl</kbd>+<kbd>N</kbd>, <kbd>Esc</kbd>, <kbd>F1</kbd>–<kbd>F12</kbd> execute natively).
+
+### 🦊 Mozilla Firefox Guide
+Because Mozilla removed experimental SSB support from desktop Firefox, use one of the following methods:
+
+* **Method 1 (One-Line Dedicated Window)**:
+  Launch Firefox in a dedicated window without tabs:
+  ```bash
+  firefox --new-window http://localhost:8080/desk
+  ```
+* **Method 2 (PWAsForFirefox Extension)**:
+  Install the free open-source [PWAsForFirefox (firefoxpwa)](https://pwasforfirefox.filips.si/) extension to enable true 1-click PWA desktop app installation directly within Firefox.
+* **Shortcut Collision Protection**:
+  In Firefox, use <kbd>Alt</kbd>+<kbd>N</kbd> (or <kbd>Alt</kbd>+<kbd>C</kbd> in numeric fields) to toggle the Calculator without triggering Firefox's native "New Window" shortcut. <kbd>F1</kbd> (Help), <kbd>F5</kbd> (Reload), and <kbd>F7</kbd> (Caret browsing) are fully intercepted.
+
+---
+
 ## 📦 Installation
 
 To install **Accounting Shortcuts** on your Frappe / ERPNext site:
