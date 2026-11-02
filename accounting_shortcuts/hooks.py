@@ -15,7 +15,8 @@ app_include_js = [
     "/assets/accounting_shortcuts/js/calculator.js",
     "/assets/accounting_shortcuts/js/goto_search.js",
     "/assets/accounting_shortcuts/js/keyboard_dispatcher.js",
-    "/assets/accounting_shortcuts/js/floating_dock.js"
+    "/assets/accounting_shortcuts/js/floating_dock.js",
+    "/assets/accounting_shortcuts/js/pwa.js"
 ]
 
 # Required Apps

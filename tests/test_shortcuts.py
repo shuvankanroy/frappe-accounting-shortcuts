@@ -26,10 +26,11 @@ class TestAccountingShortcutsPackage(unittest.TestCase):
         self.assertIn("/assets/accounting_shortcuts/js/goto_search.js", content)
         self.assertIn("/assets/accounting_shortcuts/js/keyboard_dispatcher.js", content)
         self.assertIn("/assets/accounting_shortcuts/js/floating_dock.js", content)
+        self.assertIn("/assets/accounting_shortcuts/js/pwa.js", content)
 
     def test_js_assets_exist(self):
         """Verify public JavaScript assets exist."""
-        for js_file in ["calculator.js", "goto_search.js", "keyboard_dispatcher.js", "floating_dock.js"]:
+        for js_file in ["calculator.js", "goto_search.js", "keyboard_dispatcher.js", "floating_dock.js", "pwa.js"]:
             p = os.path.join(self.js_dir, js_file)
             self.assertTrue(os.path.exists(p), f"Missing {js_file}")
 
