@@ -136,7 +136,7 @@
         if (e.key === 'F1') {
           e.preventDefault();
           e.stopPropagation();
-          if (window.TallyFloatingDock) window.TallyFloatingDock.toggleDrawer();
+          if (window.TallyFloatingDock) window.TallyFloatingDock.showShortcutsGuide();
           return;
         }
         if (e.key === 'F2') {

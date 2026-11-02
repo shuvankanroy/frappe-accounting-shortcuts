@@ -1,6 +1,6 @@
 /**
- * Tally Shortcuts: Interactive Floating Dock & Details Drawer
- * Always-visible floating button bar with 1-click execution and expandable cheatsheet.
+ * Tally Shortcuts: Interactive Pop-Out Shortcuts Guide & Sleek Compact Floating Dock
+ * Always-visible floating dock with 1-click execution and comprehensive single & multi-key pop-out modal.
  */
 
 (function () {
@@ -16,33 +16,48 @@
         if (!document.getElementById('adt-shortcut-dock') && document.body) {
           const dock = document.createElement('div');
           dock.id = 'adt-shortcut-dock';
+          dock.style.cssText = `
+            position: fixed;
+            bottom: 8px;
+            right: 18px;
+            z-index: 9997;
+            background: #064E3B;
+            color: #FFFFFF;
+            font-size: 11px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+            opacity: 0.95;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s ease;
+          `;
           dock.innerHTML = `
-            <span class="adt-dock-pill" data-act="ctrl-a"><strong>Ctrl+A</strong> Save</span>
-            <span class="adt-dock-pill" data-act="alt-g"><strong>Alt+G</strong> Go To</span>
-            <span class="adt-dock-pill" data-act="f8"><strong>F8</strong> Sale</span>
-            <span class="adt-dock-pill" data-act="f9"><strong>F9</strong> Purch</span>
-            <span class="adt-dock-pill" data-act="f5"><strong>F5</strong> Pay</span>
-            <span class="adt-dock-pill" data-act="f6"><strong>F6</strong> Recv</span>
-            <span class="adt-dock-pill" data-act="f4"><strong>F4</strong> Contra</span>
-            <span class="adt-dock-pill" data-act="f7"><strong>F7</strong> Journal</span>
-            <span class="adt-dock-pill" data-act="calc"><strong>Ctrl+N</strong> Calc</span>
-            <span class="adt-dock-pill" data-act="f1" style="background: #047857; padding: 2px 6px; border-radius: 4px; font-weight: 700;">F1 Shortcuts ▲</span>
+            <span style="font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+              ⚡ <kbd style="background: #047857; color: #FFF; padding: 1px 5px; border-radius: 3px; font-weight: 700;">F1</kbd> Shortcuts
+            </span>
+            <span style="opacity: 0.4;">|</span>
+            <span class="adt-dock-pill" data-act="alt-g" style="padding: 1px 4px; border-radius: 3px;"><strong>Alt+G</strong> Go To</span>
+            <span style="opacity: 0.4;">|</span>
+            <span class="adt-dock-pill" data-act="ctrl-a" style="padding: 1px 4px; border-radius: 3px;"><strong>Ctrl+A</strong> Save</span>
+            <span style="opacity: 0.4;">|</span>
+            <span class="adt-dock-pill" data-act="calc" style="padding: 1px 4px; border-radius: 3px;"><strong>Ctrl+N</strong> Calc</span>
           `;
 
           dock.querySelectorAll('.adt-dock-pill').forEach(pill => {
             pill.addEventListener('click', (e) => {
               e.stopPropagation();
               const act = pill.getAttribute('data-act');
-              if (act === 'f1') {
-                this.toggleDrawer();
-              } else {
-                this.executeAction(act);
-              }
+              this.executeAction(act);
             });
           });
 
           dock.addEventListener('click', () => {
-            this.toggleDrawer();
+            this.showShortcutsGuide();
           });
 
           document.body.appendChild(dock);
@@ -50,101 +65,172 @@
       }, 1500);
     },
 
-    toggleDrawer: function () {
-      let drawer = document.getElementById('adt-shortcut-details-drawer');
-      if (!drawer) {
-        drawer = this.createDrawer();
-      }
-      if (drawer.style.display === 'block') {
-        drawer.style.display = 'none';
-      } else {
-        drawer.style.display = 'block';
-      }
-    },
+    showShortcutsGuide: function () {
+      const sections = [
+        {
+          category: 'SINGLE-KEY FUNCTIONS',
+          badge: 'Direct 1-Key Press',
+          badgeColor: '#065F46',
+          groups: [
+            {
+              name: 'Gateway / Desk Navigation (When No Text Input Focused)',
+              items: [
+                ['C', 'Create Master (Ledger, Group, Stock Item, Unit, Godown)', 'alt-c'],
+                ['A', 'Alter Master / Chart of Accounts', 'alter-accounts'],
+                ['H', 'Chart of Accounts (Tree Hierarchy)', 'h-coa'],
+                ['V', 'Voucher Entry (Payment by default; F4-F9 to switch)', 'f5'],
+                ['K', 'Day Book (Today Transactions / General Ledger)', 'k-daybook'],
+                ['N', 'Banking Hub & Bank Reconciliation (BRS)', 'n-bank'],
+                ['B', 'Balance Sheet Report', 'b-bs'],
+                ['P', 'Profit & Loss Statement', 'p-pl'],
+                ['S', 'Stock Summary Report', 's-stock'],
+                ['R', 'Financial Ratio Analysis', 'r-ratio'],
+                ['D', 'Financial Reports Directory', 'd-reports'],
+                ['O', 'Executive Financial Dashboard', 'o-dashboard'],
+                ['T', 'Accountant Desk / To-Dos & Due Dates', 't-todo'],
+                ['Q', 'Quit / Go Back (Same as Esc)', 'esc']
+              ]
+            },
+            {
+              name: 'Function Keys (F1 – F12)',
+              items: [
+                ['F1', 'Pop-out Shortcuts Guide (This Window)', 'f1'],
+                ['F2', 'Change Document / Voucher Posting Date', 'f2-date'],
+                ['F3', 'Select / Switch Active Company', 'f3-company'],
+                ['F4', 'Contra Voucher (Bank & Cash Transfer)', 'f4'],
+                ['F5', 'Payment Voucher (Pay Vendor / Expense)', 'f5'],
+                ['F6', 'Receipt Voucher (Receive from Customer)', 'f6'],
+                ['F7', 'Journal Voucher (Double-Entry Dr/Cr Adjustments)', 'f7'],
+                ['F8', 'Sales Invoice / Voucher (GST Billing)', 'f8'],
+                ['F9', 'Purchase Invoice / Voucher (Inward Supply)', 'f9'],
+                ['F10', 'All Voucher Types Selector Palette', 'f10'],
+                ['F11', 'Company Features & Setup', 'f11-company'],
+                ['F12', 'Configuration Profile', 'f12-config']
+              ]
+            },
+            {
+              name: 'Navigation & Stepping Keys',
+              items: [
+                ['Esc', 'Close Modal / Cancel Pop-out / Go Back One View', 'esc'],
+                ['Enter', 'Next field; in reports, drill-down into row voucher', 'enter'],
+                ['Shift+Tab', 'Previous field in sequence', 'prev-field'],
+                ['+', 'Step Report Period Forward by 1 Month', 'plus-period'],
+                ['-', 'Step Report Period Backward by 1 Month', 'minus-period']
+              ]
+            }
+          ]
+        },
+        {
+          category: 'MULTI-KEY FUNCTIONS',
+          badge: 'Key Combinations',
+          badgeColor: '#0D9488',
+          groups: [
+            {
+              name: 'Ctrl + Key Combinations',
+              items: [
+                ['Ctrl+A', 'Universal Accept & Save (Vouchers, Forms & Dialogs)', 'ctrl-a'],
+                ['Ctrl+N', 'Accountant Formula Calculator Panel (or Alt+C)', 'calc'],
+                ['Ctrl+G', 'Switch To / Universal Go To Palette', 'alt-g'],
+                ['Ctrl+Enter', 'Alter Master under cursor in link fields; Submit voucher', 'ctrl-enter'],
+                ['Ctrl+D', 'Remove line item row in grid table', 'ctrl-d'],
+                ['Ctrl+H', 'Change Voucher Mode (Item Invoice vs Accounting Invoice)', 'ctrl-h'],
+                ['Ctrl+R', 'Repeat Narration from last voucher of same type/party', 'repeat-narration'],
+                ['Ctrl+P', 'Print Tax Invoice / Browser Print', 'print'],
+                ['Ctrl+E', 'Quick Export Report to CSV', 'export-csv'],
+                ['Ctrl+S', 'Save Draft Voucher', 'save-draft'],
+                ['Ctrl+Q', 'Quit / Go Back (equivalent to Esc)', 'esc'],
+                ['Ctrl+F8', 'Sales Order', 'ctrl-f8'],
+                ['Ctrl+F9', 'Purchase Order', 'ctrl-f9'],
+                ['Ctrl+F7', 'Physical Stock Reconciliation', 'ctrl-f7'],
+                ['Ctrl+F4', 'Payroll Entry', 'ctrl-f4']
+              ]
+            },
+            {
+              name: 'Alt + Key Combinations',
+              items: [
+                ['Alt+G', 'Go To Universal Fuzzy Search Palette', 'alt-g'],
+                ['Alt+F', 'Find Ledger Statement by Name', 'alt-f'],
+                ['Alt+C', 'In amount field: Calculator; In party/item: Master Drawer', 'alt-c'],
+                ['Alt+2', 'Duplicate Current Voucher on Today Date', 'alt-2'],
+                ['Alt+D', 'Delete Draft Voucher (in voucher); Open Day Book (on Desk)', 'alt-d'],
+                ['Alt+X', 'Cancel Submitted Voucher (preserves sequence number)', 'alt-x'],
+                ['Alt+A', 'Statutory GST Tax Analysis Drawer (HSN, CGST, SGST, IGST)', 'alt-a'],
+                ['Alt+R', 'Repeat Narration from last voucher for party', 'repeat-narration'],
+                ['Alt+K', 'Company Menu / Switch Company (same as F3)', 'f3-company'],
+                ['Alt+O', 'Data Import Menu (Tally XML / Excel / CSV)', 'import-menu'],
+                ['Alt+E', 'Export Menu (PDF, Excel, JSON)', 'export-menu'],
+                ['Alt+P', 'Print Menu / Tax Invoice Print', 'print']
+              ]
+            },
+            {
+              name: 'Alt + Function Keys & Special Combinations',
+              items: [
+                ['Alt+F2', 'Change Financial Period (From Date → To Date)', 'alt-f2-period'],
+                ['Alt+F3', 'Select / Switch Active Company', 'f3-company'],
+                ['Alt+F5', 'Debit Note (Purchase Return); in reports: Detailed View', 'alt-f5'],
+                ['Alt+F6', 'Credit Note (Sales Return)', 'alt-f6'],
+                ['Alt+F7', 'Stock Journal / Godown Material Transfer', 'alt-f7'],
+                ['Alt+F8', 'Delivery Note / Challan', 'alt-f8'],
+                ['Alt+F9', 'Receipt Note / Goods Inward', 'alt-f9'],
+                ['Alt+F1', 'Detailed vs Condensed View in Stock Summary', 'alt-f1']
+              ]
+            }
+          ]
+        }
+      ];
 
-    createDrawer: function () {
-      const drawer = document.createElement('div');
-      drawer.id = 'adt-shortcut-details-drawer';
-      drawer.innerHTML = `
-        <div style="background: #065F46; color: #FFFFFF; padding: 10px 16px; font-weight: 700; font-size: 13px; display: flex; justify-content: space-between; align-items: center;">
-          <span>⚡ Tally & KhataOS Shortcut Command Center</span>
-          <span style="cursor: pointer; font-size: 14px;" id="adt-drawer-close">✕</span>
-        </div>
-        <div style="padding: 12px 16px; overflow-y: auto; max-height: calc(80vh - 85px);">
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
-            <!-- Column 1: Vouchers -->
-            <div>
-              <div style="font-weight: 700; color: #065F46; font-size: 12px; margin-bottom: 6px; text-transform: uppercase; border-bottom: 1.5px solid #D1E7DD; padding-bottom: 2px;">Voucher Keys</div>
-              <div class="adt-sc-list">
-                <div class="adt-sc-row" data-action="f8"><kbd>F8</kbd> Sales Invoice</div>
-                <div class="adt-sc-row" data-action="f9"><kbd>F9</kbd> Purchase Invoice</div>
-                <div class="adt-sc-row" data-action="f5"><kbd>F5</kbd> Payment Voucher</div>
-                <div class="adt-sc-row" data-action="f6"><kbd>F6</kbd> Receipt Voucher</div>
-                <div class="adt-sc-row" data-action="f4"><kbd>F4</kbd> Contra Voucher</div>
-                <div class="adt-sc-row" data-action="f7"><kbd>F7</kbd> Journal Voucher</div>
-                <div class="adt-sc-row" data-action="alt-f6"><kbd>Alt+F6</kbd> Credit Note</div>
-                <div class="adt-sc-row" data-action="alt-f5"><kbd>Alt+F5</kbd> Debit Note</div>
-                <div class="adt-sc-row" data-action="alt-f7"><kbd>Alt+F7</kbd> Godown Transfer</div>
-                <div class="adt-sc-row" data-action="ctrl-f8"><kbd>Ctrl+F8</kbd> Sales Order</div>
-                <div class="adt-sc-row" data-action="ctrl-f9"><kbd>Ctrl+F9</kbd> Purchase Order</div>
-                <div class="adt-sc-row" data-action="f10"><kbd>F10</kbd> All Voucher Types</div>
+      const html = `
+        <div class="adt-shortcuts-popout" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, sans-serif; max-height: 72vh; overflow-y: auto; padding: 4px 6px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            ${sections.map(sec => `
+              <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid ${sec.badgeColor}; padding-bottom: 6px; margin-bottom: 12px;">
+                  <span style="font-weight: 800; font-size: 13px; color: ${sec.badgeColor};">${sec.category}</span>
+                  <span style="background: ${sec.badgeColor}; color: #FFF; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; text-transform: uppercase;">${sec.badge}</span>
+                </div>
+                ${sec.groups.map(grp => `
+                  <div style="margin-bottom: 12px;">
+                    <div style="font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0.3px;">${grp.name}</div>
+                    <div style="display: flex; flex-direction: column; gap: 3px;">
+                      ${grp.items.map(([key, desc, act]) => `
+                        <div class="adt-popout-row" data-action="${act}" style="display: flex; align-items: center; justify-content: space-between; padding: 3px 6px; border-radius: 4px; cursor: pointer; transition: background 0.1s; background: #FFFFFF; border: 1px solid #F1F5F9;">
+                          <div style="display: flex; align-items: center; gap: 8px;">
+                            <kbd style="background: #065F46; color: #FFFFFF; font-weight: 700; font-size: 11px; padding: 2px 6px; border-radius: 4px; min-width: 60px; text-align: center; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">${key}</kbd>
+                            <span style="font-size: 12px; color: #1E293B;">${desc}</span>
+                          </div>
+                          <span style="font-size: 10px; color: #94A3B8; opacity: 0.6;">▶</span>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                `).join('')}
               </div>
-            </div>
-
-            <!-- Column 2: Tools & Masters -->
-            <div>
-              <div style="font-weight: 700; color: #065F46; font-size: 12px; margin-bottom: 6px; text-transform: uppercase; border-bottom: 1.5px solid #D1E7DD; padding-bottom: 2px;">Tools & Masters</div>
-              <div class="adt-sc-list">
-                <div class="adt-sc-row" data-action="ctrl-a"><kbd>Ctrl+A</kbd> Accept / Save</div>
-                <div class="adt-sc-row" data-action="alt-g"><kbd>Alt+G</kbd> Go To Universal Search</div>
-                <div class="adt-sc-row" data-action="calc"><kbd>Ctrl+N</kbd> Calculator (or Alt+C)</div>
-                <div class="adt-sc-row" data-action="alt-c"><kbd>Alt+C</kbd> Quick Master Drawer</div>
-                <div class="adt-sc-row" data-action="ctrl-enter"><kbd>Ctrl+Enter</kbd> Alter Master / Post</div>
-                <div class="adt-sc-row" data-action="alt-f"><kbd>Alt+F</kbd> Find Ledger Statement</div>
-                <div class="adt-sc-row" data-action="repeat-narration"><kbd>Ctrl+R</kbd> Repeat Narration</div>
-                <div class="adt-sc-row" data-action="alt-2"><kbd>Alt+2</kbd> Duplicate Voucher</div>
-                <div class="adt-sc-row" data-action="alt-d"><kbd>Alt+D</kbd> Delete Draft / Day Book</div>
-                <div class="adt-sc-row" data-action="alt-x"><kbd>Alt+X</kbd> Cancel Voucher</div>
-              </div>
-            </div>
-
-            <!-- Column 3: Gateway Single-Letters & Reports -->
-            <div>
-              <div style="font-weight: 700; color: #065F46; font-size: 12px; margin-bottom: 6px; text-transform: uppercase; border-bottom: 1.5px solid #D1E7DD; padding-bottom: 2px;">Gateway Single Keys</div>
-              <div class="adt-sc-list">
-                <div class="adt-sc-row" data-action="k-daybook"><kbd>K</kbd> Day Book (Alt+D)</div>
-                <div class="adt-sc-row" data-action="b-bs"><kbd>B</kbd> Balance Sheet</div>
-                <div class="adt-sc-row" data-action="p-pl"><kbd>P</kbd> Profit & Loss</div>
-                <div class="adt-sc-row" data-action="s-stock"><kbd>S</kbd> Stock Summary</div>
-                <div class="adt-sc-row" data-action="h-coa"><kbd>H</kbd> Chart of Accounts</div>
-                <div class="adt-sc-row" data-action="n-bank"><kbd>N</kbd> Banking Hub & BRS</div>
-                <div class="adt-sc-row" data-action="f2-date"><kbd>F2</kbd> Change Document Date</div>
-                <div class="adt-sc-row" data-action="alt-f2-period"><kbd>Alt+F2</kbd> Change Period</div>
-                <div class="adt-sc-row" data-action="f3-company"><kbd>F3</kbd> Switch Company (Alt+K)</div>
-                <div class="adt-sc-row" data-action="esc"><kbd>Esc</kbd> Back / Close Drawer</div>
-              </div>
-            </div>
+            `).join('')}
           </div>
-        </div>
-        <div style="background: #F8FAFC; padding: 6px 16px; border-top: 1px solid #E2E8F0; font-size: 11px; color: #64748B; display: flex; justify-content: space-between;">
-          <span>💡 Click any shortcut above to run immediately, or use keyboard</span>
-          <span><strong>Tally Shortcuts Addon</strong></span>
+          <div style="margin-top: 12px; text-align: center; font-size: 11px; color: #64748B; background: #EAF7EE; padding: 8px; border-radius: 6px; border: 1px solid #D1E7DD;">
+            💡 <strong>Pro Tip:</strong> Click any shortcut row above to trigger it immediately, or use physical keys on your keyboard!
+          </div>
         </div>
       `;
 
-      document.body.appendChild(drawer);
-
-      drawer.querySelector('#adt-drawer-close').onclick = () => { drawer.style.display = 'none'; };
-
-      drawer.querySelectorAll('.adt-sc-row').forEach(row => {
-        row.addEventListener('click', () => {
-          const act = row.getAttribute('data-action');
-          drawer.style.display = 'none';
-          this.executeAction(act);
-        });
+      const d = new frappe.ui.Dialog({
+        title: __('⚡ Tally & KhataOS Shortcuts — Single & Multi-Key Guide'),
+        size: 'extra-large',
+        fields: [{ fieldtype: 'HTML', fieldname: 'shortcuts_html' }]
       });
 
-      return drawer;
+      d.fields_dict.shortcuts_html.$wrapper.html(html);
+
+      d.fields_dict.shortcuts_html.$wrapper.find('.adt-popout-row').hover(
+        function () { $(this).css({ 'background': '#EAF7EE', 'border-color': '#065F46' }); },
+        function () { $(this).css({ 'background': '#FFFFFF', 'border-color': '#F1F5F9' }); }
+      ).on('click', (e) => {
+        const act = $(e.currentTarget).attr('data-action');
+        d.hide();
+        this.executeAction(act);
+      });
+
+      d.show();
     },
 
     executeAction: function (act) {
@@ -159,8 +245,12 @@
         'alt-f6': () => frappe.new_doc('Sales Invoice', { is_return: 1 }),
         'alt-f5': () => frappe.new_doc('Purchase Invoice', { is_return: 1 }),
         'alt-f7': () => frappe.new_doc('Stock Entry', { purpose: 'Material Transfer' }),
+        'alt-f8': () => frappe.new_doc('Delivery Note'),
+        'alt-f9': () => frappe.new_doc('Purchase Receipt'),
         'ctrl-f8': () => frappe.new_doc('Sales Order'),
         'ctrl-f9': () => frappe.new_doc('Purchase Order'),
+        'ctrl-f7': () => frappe.new_doc('Stock Reconciliation'),
+        'ctrl-f4': () => frappe.new_doc('Payroll Entry'),
         'f10': () => window.TallyGoTo && window.TallyGoTo.open(),
         'ctrl-a': () => d && d.triggerAccept(),
         'alt-g': () => window.TallyGoTo && window.TallyGoTo.open(),
@@ -178,9 +268,17 @@
         's-stock': () => frappe.set_route('query-report', 'Stock Summary'),
         'h-coa': () => frappe.set_route('Tree', 'Account'),
         'n-bank': () => frappe.set_route('accounting-banking'),
+        'r-ratio': () => frappe.set_route('query-report', 'Financial Ratios'),
+        'd-reports': () => frappe.set_route('accounting-reports'),
+        'o-dashboard': () => frappe.set_route('accounting-dashboard'),
+        't-todo': () => frappe.set_route('List', 'ToDo'),
+        'alter-accounts': () => frappe.set_route('desk', 'accounting'),
         'f2-date': () => d && d.triggerDateChange(),
         'alt-f2-period': () => d && d.triggerPeriodChange(),
         'f3-company': () => d && d.switchCompanyDialog(),
+        'f11-company': () => frappe.set_route('Form', 'Company', frappe.defaults.get_user_default('Company')),
+        'f12-config': () => frappe.show_alert(__('Configuration profile loaded (F12)'), 1),
+        'f1': () => this.showShortcutsGuide(),
         'esc': () => window.history.back()
       };
 
